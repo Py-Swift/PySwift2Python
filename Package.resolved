@@ -1,5 +1,5 @@
 {
-  "originHash" : "6917e6e08b6b0e0d1304da2c59cb7352a4bce1d42edbe14ca0dfb891b7192048",
+  "originHash" : "6484fb28565a85d85a9dcb9e4a3debdadccb36bb1f8156a12d5cbdccd70ccba8",
   "pins" : [
     {
       "identity" : "pathkit",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Py-Swift/PySwiftAST",
       "state" : {
-        "branch" : "master",
-        "revision" : "ce91b58f89c8211329b6f4288c82e412779f40a7"
+        "revision" : "ce91b58f89c8211329b6f4288c82e412779f40a7",
+        "version" : "0.0.0"
       }
     },
     {
