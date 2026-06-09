@@ -17,7 +17,6 @@ let package_targets: [Target] = [
     .target(
         name: "PySwift2Python",
         dependencies: [
-            // add other package products or internal targets
             .product(name: "SwiftSyntax", package: "swift-syntax"),
             .product(name: "SwiftParser", package: "swift-syntax"),
             "PathKit",
@@ -25,11 +24,16 @@ let package_targets: [Target] = [
             .product(name: "PySwiftCodeGen", package: "PySwiftAST"),
             .product(name: "PyAstVisitors", package: "PySwiftAST"),
             .product(name: "PyFormatters", package: "PySwiftAST"),
-        ],
-        resources: [
-
         ]
-    )
+    ),
+    .executableTarget(
+        name: "StubGen",
+        dependencies: [
+            "PySwift2Python",
+            "PathKit",
+        ],
+        path: "Sources/StubGen"
+    ),
 ]
 
 
@@ -40,10 +44,12 @@ let package = Package(
         .macOS(.v11)
     ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "PySwift2Python",
             targets: ["PySwift2Python"]),
+        .executable(
+            name: "pyswift2python",
+            targets: ["StubGen"]),
     ],
     dependencies: package_dependencies,
     targets: package_targets

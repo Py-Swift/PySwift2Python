@@ -23,6 +23,19 @@ extension AttributeListSyntax.Element {
     var isPyPropertyEx: Bool { isAttribute("PyPropertyEx") }
     
     var isPyModule: Bool { isAttribute("PyModule") }
+
+    /// Returns the `name:` string argument from `@PyModule(name: "...")`, if present.
+    var pyModuleNameArg: String? {
+        guard case .attribute(let attr) = self,
+              attr.attributeName.trimmedDescription == "PyModule",
+              let args = attr.arguments,
+              case .argumentList(let list) = args
+        else { return nil }
+        return list.first { $0.label?.text == "name" }
+            .flatMap { $0.expression.as(StringLiteralExprSyntax.self) }
+            .map { $0.segments.trimmedDescription }
+    }
+
     var isPyClass: Bool { isAttribute("PyClass") }
     var isPyClassExt: Bool { isAttribute("PyClassByExtension") }
     var isPyContainer: Bool { isAttribute("PyContainer") }
@@ -35,6 +48,9 @@ extension AttributeListSyntax {
     var isPyMethod: Bool { contains(where: \.isPyMethod) }
     var isPyProperty: Bool { contains(where: \.isPyProperty) }
     var isPyModule: Bool { contains(where: \.isPyModule) }
+
+    /// Returns the explicit `name:` arg from `@PyModule(name:)`, if any element has it.
+    var pyModuleNameArg: String? { compactMap(\.pyModuleNameArg).first }
     var isPyClass: Bool { contains(where: \.isPyClass) }
     var isPyClassExt: Bool { contains(where: \.isPyClassExt) }
     var isPyContainer: Bool { contains(where: \.isPyContainer) }

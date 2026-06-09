@@ -80,9 +80,13 @@ public final class HandleFiles {
                 classes_ext: included_classes_ext
             )
             
+            // Prefer the explicit name: arg from @PyModule(name: "..."),
+            // fall back to camelCase→snake_case of the struct name.
+            let moduleName = py_module.attributes.pyModuleNameArg
+                ?? py_module.name.text.camelCaseToSnakeCase()
             outputs.append(
                 .init(
-                    name: py_module.name.text.camelCaseToSnakeCase(),
+                    name: moduleName,
                     content: module.description.replacingOccurrences(of: "    ", with: "\t")
                 )
             )
