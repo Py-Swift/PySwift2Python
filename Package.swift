@@ -6,7 +6,8 @@ import PackageDescription
 
 
 let package_dependencies: [Package.Dependency] = [
-    .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "601.0.0"),
+    //.package(url: "https://github.com/swiftlang/swift-syntax.git", from: "601.0.0"),
+    .package(path: "../PySwiftGenerators"),
     .package(url: "https://github.com/Py-Swift/PySwiftAST", from: .init(0, 0, 0)),
     .package(url: "https://github.com/kylef/PathKit", .upToNextMajor(from: "1.0.1")),
 ]
@@ -17,8 +18,9 @@ let package_targets: [Target] = [
     .target(
         name: "PySwift2Python",
         dependencies: [
-            .product(name: "SwiftSyntax", package: "swift-syntax"),
-            .product(name: "SwiftParser", package: "swift-syntax"),
+            //.product(name: "SwiftSyntax", package: "swift-syntax"),
+            //.product(name: "SwiftParser", package: "swift-syntax"),
+            .product(name: "SwiftSyntaxWrapper", package: "PySwiftGenerators"),
             "PathKit",
             .product(name: "PySwiftAST", package: "PySwiftAST"),
             .product(name: "PySwiftCodeGen", package: "PySwiftAST"),

@@ -13,6 +13,8 @@ extension AttributeListSyntax.Element {
                 attributeSyntax.attributeName.trimmedDescription == text
             case .ifConfigDecl(let ifConfigDeclSyntax):
                 false
+        default:
+            fatalError("AttributeListSyntax.Element.isAttribute - type: \(self)")
         }
     }
     

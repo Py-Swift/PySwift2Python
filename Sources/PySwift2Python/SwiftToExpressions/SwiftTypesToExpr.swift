@@ -46,6 +46,8 @@ func swiftTypeToExpression(_ type: TypeSyntax) -> Expression {
             break
         case .tupleType(let tupleTypeSyntax):
             break
+    default:
+        fatalError(#file)
     }
     
     // Default to "object"

@@ -45,6 +45,8 @@ class PyClassByExtensionUnpack {
                                 continue
                             case .expr(let exprSyntax):
                                 continue
+                        default:
+                            continue
                         }
                     }
                     

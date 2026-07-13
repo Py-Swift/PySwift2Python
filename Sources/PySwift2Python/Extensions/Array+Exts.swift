@@ -39,6 +39,7 @@ public extension Array where Element == PathKit.Path {
                     break
                 case .expr(let exprSyntax):
                     break
+            default: fatalError("declSyntax failed")
             }
             return nil
         }

@@ -187,6 +187,9 @@ extension PySwiftAST.ClassDef {
                 case .getter:
                     // Getter-only computed property
                     return .getterOnly
+            default:
+                fatalError("PySwiftAST.ClassDef.detectPropertyType - type: \(accessorBlock.accessors.description)")
+                    
             }
         }
         
